@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>定时器秒表</title>
+	</head>
+	<style>
+		#div{
+			width: 200px;
+			height:50px;
+			background-color: black;
+			color: #FF5983;
+			text-align: center;
+			line-height: 50px;
+			font-weight: bold;
+			font-size: 30px;		
+		}
+		#start{
+			margin-left: 50px;
+			background-color:#D0E9FF ;
+		}
+		#stop{
+			background-color: #D0E9FF;
+		}
+	</style>
+	<body>
+		
+		<div id="div">
+			<span id="span"><span>
+		</div>
+		<button id="start">Start</button>
+		<button id="stop">Stop</button>
+		<script>
+			function getDate(){
+			var span=document.getElementById("span");
+			var dObj=new Date();
+			var hours=dObj.getHours();
+			if(hours<10){
+				hours="0"+hours;
+			}
+			var min=dObj.getMinutes();
+			if(min<10){
+				min="0"+min;
+			}
+			var second=dObj.getSeconds();
+			if(second<10){
+				second='0'+second
+			}
+			var str=hours+':'+min+':'+second;
+			span.innerHTML=str;
+			}
+			getDate();
+			setStart();
+			function setStart(){
+				sObj=setInterval(getDate,1000);
+			}
+			
+			function setStop(){
+				clearInterval(sObj);
+			}
+			var start=document.getElementById("start");
+			var stop=document.getElementById("stop");
+			
+			start.onclick=function(){
+				setStart();
+			}
+			stop.onclick=function(){
+				setStop();
+			}
+		</script>
+	</body>
+</html>
